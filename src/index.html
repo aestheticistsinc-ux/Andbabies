@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>and babies? Info</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div id="warning-overlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 transition-opacity duration-300">
+        <div class="bg-white p-6 md:p-8 rounded-xl shadow-2xl max-w-sm w-full text-center border-4 border-red-600">
+            <h1 class="text-xl font-bold text-red-600 mb-4">Content Warning</h1>
+            <p class="text-sm text-gray-700 leading-relaxed text-left">
+                This website contains links to third-party sites that include graphic depictions of military conflict.
+                This content may be unsettling for parents of young children or individuals with war-related trauma.
+                By pressing “OK” or accessing the linked content, you agree that you have read and fully understood this warning.
+            </p>
+            <button id="ok-button"
+                    role="button" 
+                    aria-label="Warning understood and accepted"
+                    class="mt-6 w-full py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition duration-150 shadow-md">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" onclick="showSection('info'); return false;" 
+               class="text-xl font-extrabold text-gray-900 tracking-wider hover:text-red-600 transition duration-150">
+                and babies?
+            </a>
+
+            <nav class="flex space-x-6">
+                <a href="#" id="nav-info" onclick="showSection('info'); return false;"
+                   class="nav-link text-gray-700 hover:text-red-600 transition duration-150 active-link">
+                    info
+                </a>
+                <a href="#" id="nav-impressum" onclick="showSection('impressum'); return false;"
+                   class="nav-link text-gray-700 hover:text-red-600 transition duration-150">
+                    impressum
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- INFO / HOME SECTION -->
+            <section id="info" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Informationen zur Webseite</h2>
+                <div class="space-y-6 text-gray-700">
+                    <p>
+                        Diese Webseite dient als zentraler Anlaufpunkt für Links und Ressourcen rund um das Thema
+                        militärische Konflikte und deren mediale Darstellung. Unser Ziel ist es, eine kuratierte
+                        Sammlung von Dokumentationen, Berichten und Analysen von Dritten bereitzustellen, die sich mit
+                        den schwerwiegenden Auswirkungen auf Zivilisten, insbesondere Kinder, befassen.
+                    </p>
+                    <p>
+                        <strong>Wichtig:</strong> Die verlinkten Inhalte werden von uns nicht gehostet und wir übernehmen
+                        keine Verantwortung für deren Inhalt. Bitte beachten Sie erneut die Inhaltswarnung.
+                        Der Fokus dieser Seite liegt auf der Bereitstellung von Informationen für eine aufgeklärte
+                        Öffentlichkeit.
+                    </p>
+                    <p>
+                        Wir empfehlen dringend, sich vor dem Klick auf externe Links mit den spezifischen
+                        Warnhinweisen der jeweiligen Drittanbieter-Websites vertraut zu machen.
+                    </p>
+                    <h3 class="text-xl font-semibold mt-8 mb-4">Externe Ressourcen (Beispiele)</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><a href="#" class="text-red-600 hover:underline font-medium" target="_blank">Bericht über die zivile Opferzahl (Link)</a></li>
+                        <li><a href="#" class="text-red-600 hover:underline font-medium" target="_blank">Video-Dokumentation: Leben in der Konfliktzone (Link)</a></li>
+                        <li><a href="#" class="text-red-600 hover:underline font-medium" target="_blank">Analyse der humanitären Lage (Link)</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- IMPRESSUM SECTION -->
+            <section id="impressum" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Impressum</h2>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>Verantwortlich für den Inhalt:</strong></p>
+                    <p>
+                        Stanton Taylor<br>
+                        Spandauer Straße 2<br>
+                        10178 Berlin<br>
+                        Deutschland
+                    </p>
+                    <p><strong>Kontakt:</strong></p>
+                    <p>
+                        E-Mail: sgataylor2@gmail.com<br>
+                    </p>
+                    <p class="text-sm mt-6">
+                        Haftungsausschluss: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
+                        Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        const warningOverlay = document.getElementById('warning-overlay');
+        const okButton = document.getElementById('ok-button');
+        const contentSections = document.querySelectorAll('.content-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dismissed = sessionStorage.getItem('warningDismissed');
+            if (dismissed === 'true') {
+                warningOverlay.style.display = 'none';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
+
+            showSection('info');
+        });
+
+        okButton.addEventListener('click', () => {
+            sessionStorage.setItem('warningDismissed', 'true');
+
+            warningOverlay.style.opacity = '0';
+            setTimeout(() => {
+                warningOverlay.style.display = 'none';
+                document.body.style.overflow = ''; 
+            }, 300); 
+        });
+
+        function showSection(sectionId) {
+            contentSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                link.classList.add('text-link');
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            const targetLink = document.getElementById(`nav-${sectionId}`);
+
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            if (targetLink) {
+                targetLink.classList.add('active-link');
+                targetLink.classList.remove('text-link');
+            }
+        }
+
+        window.showSection = showSection;
+
+    </script>
+</body>
+</html>

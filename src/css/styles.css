@@ -1,0 +1,12 @@
+/* -----------------------------------------------------------------------------
+ * Custom Styles
+ * -------------------------------------------------------------------------- */
+
+ body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f7f7;
+}
+.primary-color { background-color: #262626; }
+.text-primary { color: #ffffff; }
+.text-link { color: #5a5a5a; }
+.active-link { font-weight: 600; color: #1a1a1a; }

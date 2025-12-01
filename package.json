@@ -1,0 +1,20 @@
+{
+    "name": "and-babies-website-eleventy",
+    "version": "1.0.0",
+    "description": "and babies?",
+    "main": "src/index.html",
+    "scripts": {
+      "start": "npx @11ty/eleventy --serve",
+      "build": "npx @11ty/eleventy"
+    },
+    "keywords": [
+      "eleventy",
+      "netlify",
+      "github-pages"
+    ],
+    "author": "Stanton Taylor",
+    "license": "ISC",
+    "devDependencies": {
+      "@11ty/eleventy": "^2.0.1"
+    }
+  }
